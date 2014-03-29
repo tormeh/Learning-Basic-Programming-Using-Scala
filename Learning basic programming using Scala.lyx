@@ -1,0 +1,1737 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{listings}
+\lstset{
+breaklines=true
+frame=single
+numbers=left
+}
+
+\lstdefinelanguage{scala}{
+  morekeywords={abstract,case,catch,class,def,%
+    do,else,extends,false,final,finally,%
+    for,if,implicit,import,match,mixin,%
+    new,null,object,override,package,%
+    private,protected,requires,return,sealed,%
+    super,this,throw,trait,true,try,%
+    type,val,var,while,with,yield},
+  otherkeywords={=>,<-,<\%,<:,>:,\#,@},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[n]{/*}{*/},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]"""
+}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{
+\end_layout
+
+\begin_layout Plain Layout
+
+breaklines=true,
+\end_layout
+
+\begin_layout Plain Layout
+
+frame=single,
+\end_layout
+
+\begin_layout Plain Layout
+
+numbers=left,
+\end_layout
+
+\begin_layout Plain Layout
+
+language=scala
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Learning basic programming using Scala
+\end_layout
+
+\begin_layout Author
+Tormod Hellen
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+newpage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+License
+\end_layout
+
+\begin_layout Standard
+This work is licensed under the Creative Commons Attribution-NonCommercial-Share
+Alike 3.0 Unported license.
+\end_layout
+
+\begin_layout Standard
+A summary of the licence is available here: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://creativecommons.org/licenses/by-nc-sa/3.0/"
+target "http://creativecommons.org/licenses/by-nc-sa/3.0/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The full legal language of the license is available here: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode"
+target "http://creativecommons.org/licenses/by-nc-sa/3.0/legalcode"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If you wish to use this work in a way not permitted by the license mentioned
+ above contact me.
+\end_layout
+
+\begin_layout Section
+Why Should I Learn to Program?
+\end_layout
+
+\begin_layout Standard
+My argument for learning programming is twofold; first, programming is a
+ useful skill for an individual and second, a basic understanding of programming
+ is necessary to understanding how the modern world works.
+\end_layout
+
+\begin_layout Standard
+Knowing how to program is useful because it qualifies you for work as a
+ programmer.
+ Programming is also a required, but not sufficient, skill for some jobs,
+ many in engineering and science.
+\end_layout
+
+\begin_layout Standard
+If you don't have at least a basic understanding of programming your understandi
+ng of the world is woefully incomplete.
+ This isn't to say that everyone should learn how to make their own word
+ processor or game, as creating even rudimentary examples of such programs
+ are a multi-month effort at best.
+ Rather, I say that most people would benefit from spending a weekend learning
+ programming in the same way that most people would benefit from visiting
+ a farm or a factory; it's useful to know how things are made.
+ 
+\end_layout
+
+\begin_layout Standard
+Computers and the programs that run on them are not only omnipresent in
+ the form of PC's and mobile phones, but also in the form of elevators,
+ electronic wheelchairs, robots, factories, airplanes, boats, cars, cash
+ registers and the programs which automatically order more supplies to the
+ store when the store's inventory runs low.
+\end_layout
+
+\begin_layout Section
+Why Should I Learn to Program in Scala?
+\end_layout
+
+\begin_layout Standard
+This is a very good question; if you ask around at programming forums on
+ the internet you will find that most recommend C or Python as your first
+ language.
+ If you're unsure what a programming language is you should skip this section
+ as I'm about to get a little technical.
+ I'll mention 
+\noun on
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+concurrency
+\end_layout
+
+\end_inset
+
+concurrency
+\noun default
+ and 
+\noun on
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+parallelism
+\end_layout
+
+\end_inset
+
+parallelism
+\noun default
+ which are sort of synonymous with multi-threading or doing many things
+ at once.
+ I'll try to present some arguments for why you should start with C or Python
+ and then say why your decision to start programming using Scala isn't all
+ that bad.
+ The arguments for C and Python are substantial, but I'll try to teach you
+ Scala in a way that minimizes the disadvantages and maximizes the advantages
+ of learning in Scala.
+\end_layout
+
+\begin_layout Paragraph
+My argument in favour of C
+\end_layout
+
+\begin_layout Standard
+C is the foundation of the world of computing.
+ The rest of the house is arguably more important, but if all software written
+ using C suddenly stopped working the world would quickly collapse into
+ a recession the like of which the financial industry could never hope (or
+ fear) to cause.
+ Examples of programs of which a substantial amount has been written in
+ C are Linux, Mac OS X and Windows.
+ Many of the small computers used in electronic devices like microwave ovens
+ cannot be programmed in any other language than C, whereas C is available
+ on nearly all kinds of computers, no matter how big or small.
+ C is also simple; not easy, but simple.
+ All programming languages abstract the actual hardware of the computer
+ from the programmer; that's the reason programming languages exist.
+ Understanding how your program run or should run on the actual computer
+ hardware in concrete terms is ridiculously hard.
+ However, some languages abstract less than others and C is one of those.
+ C helps you understand computing, but it impedes your ability to write
+ programs.
+ C is also 
+\emph on
+fast
+\emph default
+.
+\end_layout
+
+\begin_layout Paragraph
+My argument in favour of Python 
+\end_layout
+
+\begin_layout Standard
+Python is one of the easiest languages to use and learn, if not 
+\emph on
+the
+\emph default
+ easiest.
+ This is partly due to it's syntax, but it also has easy-to-use and powerful
+ (good and many-featured) libraries as well as excellent documentation.
+ Python is popular and widely used in many cases for which speed is of little
+ concern.
+ This is because while Python is definitely easy it's also 
+\emph on
+slow
+\emph default
+.
+ Simple benchmarks estimate it's 10 to 100 times slower than C (
+\begin_inset CommandInset href
+LatexCommand href
+name "http://benchmarksgame.alioth.debian.org/u64q/which-programs-are-fastest.php?gcc=on&scala=on&python3=on&calc=chart"
+target "http://benchmarksgame.alioth.debian.org/u64q/which-programs-are-fastest.php?gcc=on&scala=on&python3=on&calc=chart"
+
+\end_inset
+
+).
+ Python also has terrible support for concurrency (doing several things
+ at once).
+\end_layout
+
+\begin_layout Paragraph
+Why Scala is still a good choice
+\end_layout
+
+\begin_layout Standard
+Scala is at the cutting edge of mainstream languages.
+ It has many of the newest advances in programming language design built
+ in from the start, and where the developers of Scala were given a choice
+ they often took a 
+\begin_inset Quotes eld
+\end_inset
+
+why not both?
+\begin_inset Quotes erd
+\end_inset
+
+ stance.
+ As such, many features in other mainstream languages have analogies in
+ Scala and if you understand Scala then you have an easy time understanding
+ them.
+ Simple benchmarks estimate that it is fast; not as fast as C but only 3
+ times slower, which is very good compared not only to Python but to most
+ languages (
+\begin_inset CommandInset href
+LatexCommand href
+name "http://benchmarksgame.alioth.debian.org/u64q/which-programs-are-fastest.php?gcc=on&scala=on&python3=on&calc=chart"
+target "http://benchmarksgame.alioth.debian.org/u64q/which-programs-are-fastest.php?gcc=on&scala=on&python3=on&calc=chart"
+
+\end_inset
+
+).
+ In the age of ubiquitous multi-core processors, concurrency and parallelism
+ is set to become increasingly important and Scala has excellent support
+ for it, which neither C nor Python can boast.
+ While Scala's popularity is not really comparable to that of C or Python,
+ Wikipedia suggests (
+\begin_inset CommandInset href
+LatexCommand href
+name "http://en.wikipedia.org/wiki/Scala_(programming_language)#Adoption"
+target "http://en.wikipedia.org/wiki/Scala_(programming_language)#Adoption"
+
+\end_inset
+
+) that it has a number of high-profile users.
+ Scala inherits most of the features of - and seamlessly integrates with
+ - Java, the world's most used programming language as of writing (2013),
+ and it expands upon them while being easier to use than Java, given that
+ you don't get lost in Scala's jungle of features.
+ Scala's authors would rush in to say that the jungle of features, being
+ mostly in the standard library, is optional, which is true, but it's nonetheles
+s a jungle and it's quite possible to get lost in it.
+\end_layout
+
+\begin_layout Section
+Why should I learn to program in Scala Using This Book?
+\end_layout
+
+\begin_layout Standard
+Ouch.
+ Have some faith in me, will you? My best argument is that right now this
+ is the only free-to-read beginners guide to programming using Scala at
+ this time.
+\end_layout
+
+\begin_layout Part
+Computers and Problem Solving
+\end_layout
+
+\begin_layout Section
+Computers Don't Think for You.
+ Dumb Voltages on Dumb Circuits
+\end_layout
+
+\begin_layout Quote
+\begin_inset Quotes eld
+\end_inset
+
+Computers are like Old Testament gods; lots of rules and no mercy.
+\begin_inset Quotes erd
+\end_inset
+
+ - Joseph Campbell
+\end_layout
+
+\begin_layout Quote
+\begin_inset Quotes eld
+\end_inset
+
+On two occasions I have been asked, – 'Pray, Mr.
+ Babbage, if you put into the machine wrong figures, will the right answers
+ come out?' In one case a member of the Upper, and in the other a member
+ of the Lower House put this question.
+ I am not able rightly to apprehend the kind of confusion of ideas that
+ could provoke such a question.
+\begin_inset Quotes erd
+\end_inset
+
+ - Charles Babbage
+\end_layout
+
+\begin_layout Quote
+\begin_inset Quotes eld
+\end_inset
+
+error
+\begin_inset Quotes erd
+\end_inset
+
+ - scala
+\end_layout
+
+\begin_layout Standard
+It is important to understand that computers, while extremely fast, are
+ not really intelligent, and this, if current trends hold, isn't going to
+ change very soon.
+ While the electronic computer in front of you may seem like an abstract
+ and somewhat magical thing, the earliest of computers - 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Babbage, Charles
+\end_layout
+
+\end_inset
+
+Charles Babbage's 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Difference Engine
+\end_layout
+
+\end_inset
+
+Difference Engine - may give you some insight into what a computer really
+ is: 
+\begin_inset CommandInset href
+LatexCommand href
+name "http://en.wikipedia.org/wiki/File:Babbage_Difference_Engine.jpg"
+target "http://en.wikipedia.org/wiki/File:Babbage_Difference_Engine.jpg"
+
+\end_inset
+
+.
+ Like the Difference Engine in the picture, modern computers are neither
+ magical nor intelligent, it is their neigh-unfathomable complexity that
+ sometimes make them seem so.
+ Like the Difference Engine, computers do no less and no more than what
+ the laws of physics compells it to do given the configuration of its levers
+ and/or voltages.
+ If we want a computer to do what we want then, we must be terribly careful
+ what sort of input we give it.
+ 
+\end_layout
+
+\begin_layout Standard
+Fortunately, programming languages like Scala helps us by abstracting the
+ voltage-setting away, thus making it possible for ordinary humans to get
+ anything of substance done on a computer.
+ This isn't to say that you can't set the voltages yourself if you absolutely
+ want, given a computer sufficiently slow so that you can keep up with it.
+ Indeed, you can sort of do this on your own computer by writing the 
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+binary code
+\end_layout
+
+\end_inset
+
+
+\noun on
+binary code
+\noun default
+ directly.
+ Binary code is what your Scala program becomes shortly before it is run
+ by the computer; one's and zero's that mark the setting of certain incredibly
+ small wires to 5 or 0 volt (the details vary), thus allowing voltages to
+ propagate through the computer, ultimately producing images on your screen
+ and producing other output.
+\end_layout
+
+\begin_layout Standard
+All this talk about being terribly careful with handling input might remind
+ you of another instance where you have to be terribly careful when expressing
+ yourself: Mathematics.
+ It might be useful to think of programming as writing mathematical expressions,
+ but keep in mind that most programming language's use of the 
+\begin_inset Quotes eld
+\end_inset
+
+=
+\begin_inset Quotes erd
+\end_inset
+
+ sign is very different from the mathematical convention.
+ While programming languages abstract all the voltage-setting away, they
+ do not think, and programming is therefore all about dumb voltages on dumb
+ electric circuits.
+ Since nothing else in the computer thinks, you will have to.
+ Programming languages, being the languages in which you express your orders
+ to the computer, are therefore languages with negligible leniency in terms
+ of syntax, semantics and grammar.
+ Computers can do whatever you want them to, at frightening speed, with
+ the requirement that you know 
+\emph on
+exactly
+\emph default
+ what you want them to do and you know 
+\emph on
+exactly
+\emph default
+ how to express the actions you wish to be performed.
+\end_layout
+
+\begin_layout Part
+Setting up Your Computer and Using the Tools
+\end_layout
+
+\begin_layout Section
+Installing the tools
+\end_layout
+
+\begin_layout Subsection
+On Ubuntu Linux
+\end_layout
+
+\begin_layout Standard
+It is simplest to install Scala from Ubuntu's 
+\noun on
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\noun off
+repository
+\end_layout
+
+\end_inset
+
+repository
+\noun default
+, which is kind of like a warehouse of curated software hosted on a server
+ Ubuntu knows the adress of.
+ There are two equivalent ways to do this:
+\end_layout
+
+\begin_layout Enumerate
+Install it using Ubuntu Software Center, which you do by opening Ubuntu
+ Software Center and typing in 
+\begin_inset Quotes eld
+\end_inset
+
+Scala
+\begin_inset Quotes erd
+\end_inset
+
+ in the search box.
+ Scala should now appear.
+ If it does not, try clicking 
+\begin_inset Quotes eld
+\end_inset
+
+show [x] technical items
+\begin_inset Quotes erd
+\end_inset
+
+ in the search results.
+ When you've found Scala, click install.
+\end_layout
+
+\begin_layout Enumerate
+Open the terminal (using for example Ctrl-Alt-T), type in 
+\begin_inset Quotes eld
+\end_inset
+
+sudo apt-get install scala
+\begin_inset Quotes erd
+\end_inset
+
+ and press enter.
+ Type in your password when prompted for a sudo password.
+ If the terminal says you don't have permission you either misstyped you
+ password or your computer is set up in such a way that your user account
+ doesn't have permission to install software.
+ If the latter is true you should ask the administrator of your machine
+ whether that person can help you.
+\end_layout
+
+\begin_layout Subsection
+On Windows and other platforms
+\end_layout
+
+\begin_layout Standard
+Follow the instructions at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.scala-lang.org/downloads
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+About the Tools
+\end_layout
+
+\begin_layout Standard
+There are only two tools you really need to care about; 
+\noun on
+scala
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\noun off
+scala
+\end_layout
+
+\end_inset
+
+
+\noun default
+ and 
+\noun on
+scalac
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\noun off
+scalac
+\end_layout
+
+\end_inset
+
+.
+
+\noun default
+ Yes, one of the tools for the programming language and the programming
+ language itself share names.
+ Don't be confused.
+ You could say that scala runs your code on the computer, while scalac 
+\noun on
+compile
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\noun off
+compile
+\end_layout
+
+\end_inset
+
+
+\noun default
+ your code into a form that is faster to read for your computer.
+ This form is called Java bytecode and is contained in files with the .class
+ file extension.
+ Confusingly, while scala runs your code, it can do so in three ways: interactiv
+e interpreter, script interpreter and Java virtual machine.
+ Your code (and other's) is called 
+\noun on
+source code
+\noun default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+source code
+\end_layout
+
+\end_inset
+
+ when it is in human-readable form and has the .scala file extension.
+\end_layout
+
+\begin_layout Itemize
+Interactive interpreter: To run in this mode you simply type 
+\begin_inset Quotes eld
+\end_inset
+
+scala
+\begin_inset Quotes erd
+\end_inset
+
+ and press enter in the terminal.
+ you type in your commands and scala runs each command when it's finished
+ and you press enter.
+ Some commands, like loops, run over several lines, but most simple commands
+ are simply executed when you press enter and move on to a new line.
+ Your code is lost when you exit the interpreter.
+ This mode is useful for quick calculations and trying out new syntax.
+\end_layout
+
+\begin_layout Itemize
+Script interpreter: Here you write the code in the same way that you would
+ in the interactive interpreter, except you write it in a .scala file using
+ a text editor.
+ To do this, create a new (empty) document, name it [your_file].scala and
+ open it by right-clicking on it and choosing a text editor.
+ When you are finished, you enter 
+\begin_inset Quotes eld
+\end_inset
+
+scala [your_file].scala
+\begin_inset Quotes erd
+\end_inset
+
+ into the terminal and press enter.
+ Scala will then run your program, starting from the top, in the same way
+ it would using the interactive interpreter.
+\end_layout
+
+\begin_layout Itemize
+Java virtual machine: This is a tiny bit more complicated, but your code
+ will run a lot faster on the computer, which may or may not matter to you
+ given the problem you're trying to solve.
+ You're still writing your code in a .scala file in a text editor, but you
+ have to write it a little differently from in scala's script interpreter
+ mode.
+ All .scala files written this way can run in scala's script interpreter
+ mode, but not the other way around.
+ Instead of execution of the program starting at the top, execution starts
+ in your main function.
+ For historic (and probably technical) reasons, your main function must
+ be in an object.
+ You haven't skipped anything important, these are both new words, but I
+ won't explain them here as they are a bit complicated.
+ To run in this mode you first write your source code in a .scala file then
+ you write 
+\begin_inset Quotes eld
+\end_inset
+
+scalac [your_file].scala
+\begin_inset Quotes erd
+\end_inset
+
+ in the terminal and press enter.
+ A .class file with the name of the object containing your main function
+ will appear in the directory of your .scala file.
+ You now run the .class file by typing 
+\begin_inset Quotes eld
+\end_inset
+
+scala [your_class_file]
+\begin_inset Quotes erd
+\end_inset
+
+ in the terminal and pressing enter.
+ 
+\emph on
+Notice that you don't type in the (
+\begin_inset Quotes eld
+\end_inset
+
+.class
+\begin_inset Quotes erd
+\end_inset
+
+) file extension when using scala in this way.
+\end_layout
+
+\begin_layout Part
+The Bare Bones of Programming
+\end_layout
+
+\begin_layout Section
+Val and Var
+\end_layout
+
+\begin_layout Standard
+Vals and vars are used to refer to values and variables by name.
+ That might seem like it is simply unnecessary but convenient (why not say
+ 
+\begin_inset Quotes eld
+\end_inset
+
+5
+\begin_inset Quotes erd
+\end_inset
+
+, when 5 is what you mean?), but it is the cornerstone of programming.
+\end_layout
+
+\begin_layout Subsection
+Var
+\end_layout
+
+\begin_layout Standard
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Var
+\end_layout
+
+\end_inset
+
+First, I want you to understand that many programming languages, including
+ Scala, use the 
+\begin_inset Quotes eld
+\end_inset
+
+=
+\begin_inset Quotes erd
+\end_inset
+
+ sign in a different way than you're used to.
+ If in math I say 
+\begin_inset Formula $x=5$
+\end_inset
+
+, then x is 5, has always been 5 and will always be 5.
+ Unless, that is, x is the value of a function like 
+\begin_inset Formula $x(t_{0})=5$
+\end_inset
+
+.
+ In Scala when using vars, 
+\emph on
+we are that function
+\emph default
+.
+ Sort of.
+ I will try to explain it by throwing this book's first code example at
+ you.
+ Don't worry; I'll explain everything.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+//This string of text is behind a double dash.
+ Text that are behind double dashes or in between /* and */ are not read
+ by the computer, but are used to explain your code to the people reading
+ it.
+ I will talk to you through comments a lot.
+\end_layout
+
+\begin_layout Plain Layout
+
+var x = 5 //Here I create a new variable x and set it equal to 5
+\end_layout
+
+\begin_layout Plain Layout
+
+x=6 //Here I change x to be 6
+\end_layout
+
+\begin_layout Plain Layout
+
+x=7 //Here I change x to be 7
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Try it yourself: 
+\end_layout
+
+\begin_layout Enumerate
+Open a terminal window
+\end_layout
+
+\begin_layout Enumerate
+Type 
+\begin_inset Quotes eld
+\end_inset
+
+scala
+\begin_inset Quotes erd
+\end_inset
+
+ and end with enter.
+ Now the prompt will change a bit.
+ Don't worry.
+ This is how a program in a terminal can look like.
+\end_layout
+
+\begin_layout Enumerate
+Type in 
+\begin_inset Quotes eld
+\end_inset
+
+var x=5
+\begin_inset Quotes erd
+\end_inset
+
+ and press enter.
+ Scala will report that x is now 5.
+ It will also point out that x is an 
+\noun on
+int
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\noun off
+int
+\end_layout
+
+\end_inset
+
+(
+\noun default
+for integer
+\noun on
+).
+ 
+\noun default
+We'll get back to that.
+\end_layout
+
+\begin_layout Enumerate
+Type in 
+\begin_inset Quotes eld
+\end_inset
+
+x=6
+\begin_inset Quotes erd
+\end_inset
+
+ and press enter.
+ Scala report that x is now 6.
+\end_layout
+
+\begin_layout Enumerate
+Type in 
+\begin_inset Quotes eld
+\end_inset
+
+x=7
+\begin_inset Quotes erd
+\end_inset
+
+ and press enter.
+ Scala report that x is now 7.
+\end_layout
+
+\begin_layout Standard
+As you can see, var has the interesting property of being 
+\noun on
+mutable
+\noun default
+
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+mutable
+\end_layout
+
+\end_inset
+
+, which means that vars can be changed without being redefined.
+ In other words, vars are 
+\emph on
+variables.
+
+\emph default
+ Which brings us to val.
+\end_layout
+
+\begin_layout Subsection
+Val
+\end_layout
+
+\begin_layout Standard
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+Val
+\end_layout
+
+\end_inset
+
+Val is like var, except vals are 
+\emph on
+values
+\emph default
+.
+ Example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+val y = 5 //Here I create a new variable x and set it equal to 5
+\end_layout
+
+\begin_layout Plain Layout
+
+y=6 //This does not work.
+ Scala in interpreter gives the following error: reassignment to val
+\end_layout
+
+\begin_layout Plain Layout
+
+val y=7 //Here I redefine y to be 7.
+ This works.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You should try doing this using the scala tool in the same way as you did
+ in the paragraph on var.
+ As you can see, vals need to be 
+\emph on
+redefined
+\emph default
+ as opposed to vars, which can simply be changed.
+ That being said: 
+\emph on
+you should never redefine vals.
+
+\series bold
+\emph default
+ 
+\series default
+Take the time to come up with a new name instead.
+
+\series bold
+ 
+\series default
+There must be some exception to this principle, but I can't come up with
+ one.
+\end_layout
+
+\begin_layout Subsection
+Understanding val and var and why you SHOULD READ THIS
+\end_layout
+
+\begin_layout Standard
+A lot of research points to in insufficient understanding of 
+\noun on
+assignments
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+
+\noun off
+assignments
+\end_layout
+
+\end_inset
+
+ 
+\noun default
+as being one of the most common reasons why students fail at programming
+ classes.
+ By assignment I mean the use of vals and vars to represent values and variables
+ by name.
+ It is my hope that the way I've explained val and var will help you understand
+ them.
+ A helpful tip: 
+\series bold
+Pay careful attention to how vals and vars are created in programs and especiall
+y how vars are changed.
+
+\series default
+ 
+\end_layout
+
+\begin_layout Subsection
+The important technical details
+\end_layout
+
+\begin_layout Standard
+Scala will require you to know a bit about what lies underneath the values
+ and variables you use.
+ Some of this will not be clear until much later.
+ This is ok.
+ Here's a table with the different types
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+types
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+What it means
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Int
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Integers, or whole real numbers, if you like
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Float
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Real numbers.
+ The name comes from the way it's presented in memory.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Double
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Real numbers.
+ The name comes from it beint twice as precise as Float
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+String
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Letters and words with or without spaces, non-western characters and other
+ text-y things
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Others
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+There's almost infinitely many types of values.
+ You can even make some yourself.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Types are usually different in meaningful ways, so what type something is
+ is important.
+ You can specify what type you are actually using like this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+val x:Int = 3 //Scala interpreter returns 3
+\end_layout
+
+\begin_layout Plain Layout
+
+val y:Double = 3 //Scala interpreter returns 3.0
+\end_layout
+
+\begin_layout Plain Layout
+
+y/2 //Scala interpreter returns 1.5
+\end_layout
+
+\begin_layout Plain Layout
+
+x/2 /*Scala interpreter returns 1 here because x is an integer, remember?
+ Integers use something called "integer division" which is basically just
+ rounding downwards when you get something else from a division than a whole
+ number.*/
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+How to use val and var
+\end_layout
+
+\begin_layout Standard
+It is quite simple: Use var for things you are going to change and use val
+ for things you are not going to change.
+ This is better than using var for everything, and definitely better than
+ using val for everything.
+ Let me reiterate: 
+\series bold
+you should never redefine vals.
+ 
+\series default
+It goes against the very purpose of val and will surely confuse anyone reading
+ your code.
+\end_layout
+
+\begin_layout Section
+Sequences
+\end_layout
+
+\begin_layout Standard
+Sequences are what you imagine when I say 
+\begin_inset Quotes eld
+\end_inset
+
+list
+\begin_inset Quotes erd
+\end_inset
+
+, as in 
+\begin_inset Quotes eld
+\end_inset
+
+a shopping list
+\begin_inset Quotes erd
+\end_inset
+
+.
+ If you've encountered arrays in mathematics then that's a nice way to think
+ of it as well.
+ Sequences are still a type of value or variable, but they have some interesting
+ features.
+ Now, lists are a special kind of sequence in Scala, so don't be suprised
+ when the word 
+\begin_inset Quotes eld
+\end_inset
+
+list
+\begin_inset Quotes erd
+\end_inset
+
+ is used for something specific rather than the concept.
+ You'll often need to store numbers and other information in sequences.
+ Sequences allow you to store many things without having to name them all
+ and to do operations on all those things with one command.
+ Much like shopping lists, your code/fridge door becomes less cluttered
+ when you keep things/shopping items in sequences/shopping lists rather
+ than individual values/post-it notes.
+ You can get to individual elements in sequences by using () after the name
+ of the list.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+val x = List(3,2,1,5,4) //Here I make a new list
+\end_layout
+
+\begin_layout Plain Layout
+
+x(0) /*The Scala interpreter returns "3" here.
+ But wait! What's going on here? Scala, like most languages, have sequences
+ whose places that start at zero.
+ Yes, I'm telling you to get used to counting from zero.*/
+\end_layout
+
+\begin_layout Plain Layout
+
+x(1) //returns 2
+\end_layout
+
+\begin_layout Plain Layout
+
+x(4)*2 //returns 8
+\end_layout
+
+\begin_layout Plain Layout
+
+x(5) //x(5), like x(100), does not go well, because there are no sixth or
+ hundredandfirst places in the list.
+ It's simply not that big.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now, we've looked at sequences primarily as a means to store values and
+ then retrieve them, but sequences have lots of other things they can do:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+val x = List(3,2,1,5,4) //Here I make a new list
+\end_layout
+
+\begin_layout Plain Layout
+
+val y = 8
+\end_layout
+
+\begin_layout Plain Layout
+
+val z = x:+y /*Scala interpreter returns List(3, 2, 1, 5, 4, 8).
+ This is called appending, as in "appendix".
+ You're getting the list with something added at the end*/
+\end_layout
+
+\begin_layout Plain Layout
+
+val u = y+:x /*Scala interpreter returns List(8, 3, 2, 1, 5, 4).
+ This is called prepending.
+ You're getting the list with something added at the beginning*/
+\end_layout
+
+\begin_layout Plain Layout
+
+val v = List(5,5,5) 
+\end_layout
+
+\begin_layout Plain Layout
+
+val w = x:+v /*Scala interpreter returns List(3, 2, 1, 5, 4, List(5, 5,
+ 5)).
+ This is like taking a shopping list and then, on on line, fold another
+ shopping list and taping it onto that line.
+ Lists can contain many lists this way.
+ This is usually the way you create matrices, if you're familiar with them*/
+\end_layout
+
+\begin_layout Plain Layout
+
+val q = x++v //Scala interpreter returns List(3, 2, 1, 5, 4, 5, 5, 5).
+ Here we sort of weld the two lists together.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Creating Larger Programs
+\end_layout
+
+\begin_layout Section
+Functions, Closures and Pure Functions
+\end_layout
+
+\begin_layout Standard
+If you're writing an application that does something a little complex, you
+ might find yourself doing the same thing multiple times.
+ Wouldn't it be nice if there was a shortcut? A sort of way to make the
+ computer do an action first on one set of things and then on another set
+ of things without telling the computer all the details of the action twice?
+ Well, turns out people have had this problem before you and have made functions
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+functions
+\end_layout
+
+\end_inset
+
+ and closures
+\begin_inset Index idx
+status open
+
+\begin_layout Plain Layout
+closures
+\end_layout
+
+\end_inset
+
+.
+ Closures are what gamers would call 
+\begin_inset Quotes eld
+\end_inset
+
+a macro
+\begin_inset Quotes erd
+\end_inset
+
+.
+ A macro in programming is totally different from a macro in gaming, so
+ don't call closures macros.
+\end_layout
+
+\begin_layout Standard
+Here's a closure example:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{lstlisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+var factor = 3 
+\end_layout
+
+\begin_layout Plain Layout
+
+val multiplier = (i:Int) => i * factor //This is a closure.
+ The result of the closure when done on i is i*factor.
+\end_layout
+
+\begin_layout Plain Layout
+
+val multiplier:(Int => Int) = (i:Int) => i * factor /*This is a closure
+ with the type specified.
+ The type is given like this: ("this thing" "to" "that thing")*/
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplier(3) //Scala interpreter returns 9
+\end_layout
+
+\begin_layout Plain Layout
+
+factor = 4
+\end_layout
+
+\begin_layout Plain Layout
+
+multiplier(3) /*Scala interpreter returns 12.
+ The closure depends on what factor is! Since this can cause a bit of a
+ mess, I recommend having dependencies like factor here be vals, since the
+ result then will not change even if you redefine factor*/
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{lstlisting}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As I said,
+\end_layout
+
+\begin_layout Section
+Iteration and recursion
+\end_layout
+
+\begin_layout Quote
+Iteration is peculiar to a man, recursion is divine.
+ - L.
+ Peter Deutsch
+\end_layout
+
+\begin_layout Section
+Classes and Objects
+\end_layout
+
+\begin_layout Part
+Technical Details
+\end_layout
+
+\begin_layout Section
+Stack, Heap and Scope
+\end_layout
+
+\begin_layout Section
+Concurrency and paralellism
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+type "idx"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
